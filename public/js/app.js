@@ -120,7 +120,19 @@ var app = function app() {
 
           // If value it is an object / array then
           if(typeof val === 'object' || (val instanceof Array)) {
-            display = false; // do not display
+            for(var attributename in val){
+              var attr = key+"."+attributename
+              var value = val[attributename]
+              if(elem.length) {
+                // Update info
+                elem.html('<td>'+attr+'</td><td>'+val+'</td>');
+              }
+              else {
+                // Otherwise add info
+                $('#' + type + '-info > tbody:last-child').append('<tr id="' + type + '-info-row-'+attr+'"><td>'+attr+'</td><td>'+value+'</td></tr>');
+              }
+            }
+            display = false
           }
 
           if(display) {
@@ -331,7 +343,7 @@ var app = function app() {
         console.error(err);
       }
       // Iterate information types
-      ['varz', 'connz', 'subscriptionsz', 'routez'].forEach(function(type) {
+      ['serverz', 'storez'].forEach(function(type) {
         renderTableInfo(type, data[type] || null);
       });
     });
