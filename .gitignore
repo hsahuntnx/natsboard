@@ -6,7 +6,7 @@ Thumbs.db
 *.exe
 *.prof
 *.out
-
+package-lock.json
 tmp/
 logs/
 reports/
